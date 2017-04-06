@@ -2,17 +2,22 @@
 #include <vector>
 #include <cstring>
 #include <stdlib.h>
+#include <time.h>
 #include "card.h"
 #include "popdeck.h"
 #include "deal.h"
+#include "play.h"
 
 using namespace std;
 
 int main()
 {
     char rulescall;
-    card * deck = new card[54];
-    card * dealt;
+    char newHand;
+    card * deck = new card[52];
+
+    cout << "**NOTE** currently all face cards are represented as 10, since this is their functional value, and ace is 1." << endl;
+    cout << "also, currently the dealer always checks for naturals, even thought they are technically only supposed to if they show a 10." << endl << endl;
 
     cout << "Welcome to my Blackjack simulator and metrics tracker. This program aims to allow " << endl;
     cout << "users to practice hands of blackjack as well as keep track of their win-loss ratio for " << endl;
@@ -68,17 +73,21 @@ int main()
 
     popdeck(deck);
 
-    cout << "Deck:" << endl;
-    for (int i = 0; i < 52; i++)
-    {
-        cout << deck[i].value << " of " << deck[i].suit << endl;
-    }
-
     cout << endl;
 
-    cout << "Dealing" << endl << endl;
+    play(deck);
 
-    dealt = deal(deck);
+    cout << "Would you like to play another hand? y/n:";
+    cin >> newHand;
+
+    while(newHand == 'y')
+    {
+        play(deck);
+        cout << "Would you like to play another hand? y/n:";
+        cin >> newHand;
+    }
+
+    cout << "Exiting.";
 
     return 0;
 }

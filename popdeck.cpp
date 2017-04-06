@@ -1,6 +1,6 @@
 #include "card.h"
 
-void popdeck(card* deck)
+void popdeck(card * deck)
 {
     for (int i = 0; i < 13; i++)
     {
@@ -21,6 +21,22 @@ void popdeck(card* deck)
     {
         deck[i+39].value = i+1;
         deck[i+39].suit = "Diamonds";
+    }
+
+    for(int i = 0; i < 52; i++)
+    {
+        if(deck[i].value == 11)
+        {
+            deck[i].value = 10;
+        }
+        else if(deck[i].value == 12)
+        {
+            deck[i].value = 10;
+        }
+        else if(deck[i].value == 13)
+        {
+            deck[i].value = 10;
+        }
     }
 }
 
